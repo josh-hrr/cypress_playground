@@ -17,12 +17,8 @@ describe('Form validation', () => {
         this.value.gender.forEach(value => {
             tc1.getDropDown().select(value);
         })  
-
-        try {
-            tc1.getFormCheckButtons().check();
-        }catch(e){
-            console.log(e)
-        }
+ 
+            tc1.getFormCheckButtons().check({force:true}); 
 
         
 
