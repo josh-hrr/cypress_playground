@@ -1,17 +1,26 @@
 import MyCheckBox from './PageObject/Checkbox';
+import MyDropDown from './PageObject/Dropdown';
 
 let reusableCheckBox: MyCheckBox; 
+let reusableDropDown: MyDropDown;
 interface CheckboxData {
     checkboxName: string[]
+}
+interface DropdownData {
+    dropdownName: string[]
 }
 
 describe("Make sure UI web elements behave as per requirement", () => {
 
     let checkboxData:CheckboxData; 
-    before(()=> {
+    let dropdownData:DropdownData;
+    beforeEach(()=> {
         cy.visit("https://rahulshettyacademy.com/AutomationPractice/");
         cy.fixture("checkbox").then((value:CheckboxData) => { 
             checkboxData = value; 
+        })
+        cy.fixture("dropdown").then((value:DropdownData) => {
+            dropdownData = value;
         })
     })
 
@@ -37,5 +46,19 @@ describe("Make sure UI web elements behave as per requirement", () => {
                     cy.wrap(actualText).should('eq', expectedText); 
                 })
             })
-        })   
+        }) 
+        
+    it("verify the dropdown menu can be open and items can be selected and have correct name", () => {   
+        reusableDropDown = new MyDropDown();
+        reusableDropDown.getDropDownParent().should('be.visible'); 
+        dropdownData.dropdownName.forEach(value => {
+            reusableDropDown.getDropDown().select(value);
+            reusableDropDown.getDropDown().should('contain', value);
+            cy.wait(2000); 
+        });
+    })   
+
+
+    
+    
 })
