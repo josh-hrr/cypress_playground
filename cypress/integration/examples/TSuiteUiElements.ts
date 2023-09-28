@@ -1,19 +1,25 @@
 import MyCheckBox from './PageObject/Checkbox';
 import MyDropDown from './PageObject/Dropdown';
+import MyRadioButton from './PageObject/RadioButton';
 
 let reusableCheckBox: MyCheckBox; 
 let reusableDropDown: MyDropDown;
+let reusableRadioButton: MyRadioButton;
 interface CheckboxData {
     checkboxName: string[]
 }
 interface DropdownData {
     dropdownName: string[]
 }
+interface RadioButtonData {
+    radioName: string[]
+}
 
 describe("Make sure UI web elements behave as per requirement", () => {
 
     let checkboxData:CheckboxData; 
     let dropdownData:DropdownData;
+    let radioButtonData:RadioButtonData;
     beforeEach(()=> {
         cy.visit("https://rahulshettyacademy.com/AutomationPractice/");
         cy.fixture("checkbox").then((value:CheckboxData) => { 
@@ -21,6 +27,9 @@ describe("Make sure UI web elements behave as per requirement", () => {
         })
         cy.fixture("dropdown").then((value:DropdownData) => {
             dropdownData = value;
+        })
+        cy.fixture("radiobutton").then((value:RadioButtonData) => {
+            radioButtonData = value; 
         })
     })
 
@@ -58,7 +67,48 @@ describe("Make sure UI web elements behave as per requirement", () => {
         });
     })   
 
+    it("verify dynamic dropdown works as expected and shows correct suggestion", () => {
+        cy.get("#autocomplete").type("ind"); 
+        cy.get(".ui-menu-item div").each(el => {  
+            cy.wrap(el)
+                .invoke('text')
+                .then(label => {
+                    if(label === "India"){
+                        cy.wrap(el).click();
+                    }
+                })
+        }) 
+        cy.get("#autocomplete").should('have.value', 'India') 
+    }) 
+
+    it("should handle visible and invisible elements using assertions", () => {
+        cy.get("#displayed-text").should("be.visible");
+        cy.get("#hide-textbox").click();
+        cy.get("#displayed-text").should("not.be.visible");
+        cy.get("#show-textbox").click();
+        cy.get("#displayed-text").should("be.visible");
+    })
+
+    it.only("verify the radio buttons can be selected one by one, and text is correct", () => {
+        
+        reusableRadioButton = new MyRadioButton();
+        reusableRadioButton.getRadioButtonParent().should("be.visible");
+        reusableRadioButton.getRadioButton().should('not.be.checked');
+        reusableRadioButton.getRadioButton().check();
+        cy.get('input[value="radio3"]').should('be.checked');
+        
+        reusableRadioButton.getRadioButtonParent().each((el, index) => {  
+            cy.wrap(el) 
+                .parent()
+                .invoke('text')
+                .then((label) => { 
+                    console.log("this is a label:" + label)
+                    let actualName = label; 
+                    let expectedName = radioButtonData.radioName[index]; 
+                    cy.wrap(actualName).should('contain', expectedName) 
+                })
+        })
+    })
 
     
-    
-})
+})  
