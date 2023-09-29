@@ -9,5 +9,8 @@
     "lib": ["es5", "dom"],
     "types": ["cypress", "node"]                        /* Skip type checking all .d.ts files. */
   },
-  "include": ["**/*.ts"]
+  "include": [
+              "**/*.ts", 
+              "cypress/support/commands.js"  
+            ]
 }

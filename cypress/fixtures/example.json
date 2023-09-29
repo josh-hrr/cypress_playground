@@ -2,6 +2,5 @@
   "name": "Bob Cinclar",
   "email": "bob@gmail.com",
   "password": "random123",
-  "gender": ["Male", "Female"],
-  "productName": ["Blackberry", "iphone"]
+  "gender": ["Male", "Female"] 
 }
