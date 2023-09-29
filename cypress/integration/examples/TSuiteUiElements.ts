@@ -89,7 +89,7 @@ describe("Make sure UI web elements behave as per requirement", () => {
         cy.get("#displayed-text").should("be.visible");
     })
 
-    it.only("verify the radio buttons can be selected one by one, and text is correct", () => {
+    it("verify the radio buttons can be selected one by one, and text is correct", () => {
         
         reusableRadioButton = new MyRadioButton();
         reusableRadioButton.getRadioButtonParent().should("be.visible");
@@ -108,7 +108,6 @@ describe("Make sure UI web elements behave as per requirement", () => {
                     cy.wrap(actualName).should('contain', expectedName) 
                 })
         })
-    })
+    }) 
 
-    
 })  
