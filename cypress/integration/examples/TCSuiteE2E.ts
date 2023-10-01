@@ -17,7 +17,7 @@ describe("E2E Test", () => {
         cy.get(":nth-child(3) > strong").should("contain", "@currentPrice");    
         })
 
-    it("should make sure the order can be completed", () => {
+    it.only("should make sure the order can be completed", () => {
         cy.get(":nth-child(2) > .nav-link").click(); 
         cy.get(".card").find(".card-title").each((el, index) => {
             let elText = el.text(); 
@@ -27,6 +27,14 @@ describe("E2E Test", () => {
             }  
         })  
         cy.contains("Checkout").click(); 
-        cy.get(".btn-success").click()       
+        cy.get(".btn-success").click();
+        cy.get("#country").type("Ind"); 
+        cy.wait(10000);
+        cy.get(".suggestions > :nth-child(1) > li > a").click();
+        cy.get("#checkbox2").should("not.be.checked");
+        cy.get("#checkbox2").check({force:true});
+        cy.get("#checkbox2").should("be.checked");  
+        cy.get(".btn-lg").click(); 
+        cy.get(".alert").should("be.visible").and("contain", "Success! Thank you!");
         })    
     }) 
