@@ -1,7 +1,7 @@
 describe("E2E Test", () => {
 
-    beforeEach(() => {
-        cy.visit('https://rahulshettyacademy.com/angularpractice/');  
+    beforeEach(() => { 
+        cy.visit(Cypress.env('prod'));
     })
     it("should make sure the product price is correct in shop page and checkout page", () => {
         cy.get(":nth-child(2) > .nav-link").click(); 
@@ -90,4 +90,17 @@ describe("E2E Test", () => {
     })    
     
         
-    }) 
+    })  
+
+    /*
+
+    commands for Continuous Testing and Continous Integration server
+    we can test different browsers by passing --browser and the name of the browser
+    we can say if we need to see the test execution or not by using --headed or headless
+    we can use environment variables by using --env, attribute + url 
+    
+    npx cypress run --spec 'cypress\integration\examples\TCSuiteE2E.ts' --headless --browser chrome --env prod="https://rahulshettyacademy.com/angularpractice/"
+    npx cypress run --spec 'cypress\integration\examples\TCSuiteE2E.ts' --headed --browser chrome --env prod="https://rahulshettyacademy.com/angularpractice/"
+    npx cypress run --spec 'cypress\integration\examples\TCSuiteE2E.ts' --headed --browser firefox --env prod="https://rahulshettyacademy.com/angularpractice/"
+
+    */

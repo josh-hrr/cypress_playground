@@ -4,7 +4,13 @@ module.exports = defineConfig({
 /* 
   e2e stores all properties 
   screenshotfolder, specPatter, test runner window size
-*/ 
+*/
+  env: {
+    qa: "https://qa.rahulshettyacademy.com",
+    dev: "https://dev.rahulshettyacademy.com",
+    prod: "https://rahulshettyacademy.com/angularpractice/"
+  },
+
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
