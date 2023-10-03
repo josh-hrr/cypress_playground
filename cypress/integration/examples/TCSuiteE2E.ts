@@ -38,7 +38,7 @@ describe("E2E Test", () => {
         cy.get(".alert").should("be.visible").and("contain", "Success! Thank you!");
         })
         
-    it.only("should make sure the order amount is correct when more than one product is added", () => {
+    it("should make sure the order amount is correct when more than one product is added", () => {
         cy.get(".nav-link[href='/angularpractice/shop']").click();
         cy.get(".h-100 .card-title").each((el, index) => {
             if(el.text().includes("iphone") || el.text().includes("Samsung")){
@@ -102,5 +102,14 @@ describe("E2E Test", () => {
     npx cypress run --spec 'cypress\integration\examples\TCSuiteE2E.ts' --headless --browser chrome --env prod="https://rahulshettyacademy.com/angularpractice/"
     npx cypress run --spec 'cypress\integration\examples\TCSuiteE2E.ts' --headed --browser chrome --env prod="https://rahulshettyacademy.com/angularpractice/"
     npx cypress run --spec 'cypress\integration\examples\TCSuiteE2E.ts' --headed --browser firefox --env prod="https://rahulshettyacademy.com/angularpractice/"
+
+    */
+
+    /* 
+
+    run in cypress cloud for test reports summary
+    command: 
+
+    npx cypress run --record --key 42579a52-70e3-4e27-a7fe-aaf6c10c1f3b --spec 'cypress\integration\examples\TCSuiteE2E.ts' headless --browser chrome
 
     */

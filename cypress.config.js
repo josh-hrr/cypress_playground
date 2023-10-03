@@ -9,8 +9,8 @@ module.exports = defineConfig({
     qa: "https://qa.rahulshettyacademy.com",
     dev: "https://dev.rahulshettyacademy.com",
     prod: "https://rahulshettyacademy.com/angularpractice/"
-  },
-
+  }, 
+  projectId: "5fubrb", 
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
