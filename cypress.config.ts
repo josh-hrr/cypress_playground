@@ -1,4 +1,6 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require("cypress"); 
+
+ 
 
 module.exports = defineConfig({
 /* 
@@ -9,13 +11,11 @@ module.exports = defineConfig({
     qa: "https://qa.rahulshettyacademy.com",
     dev: "https://dev.rahulshettyacademy.com",
     prod: "https://rahulshettyacademy.com/angularpractice/"
-  }, 
+  },  
   projectId: "5fubrb", 
-  e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    }, 
-    specPattern: 'cypress/integration/examples/*.ts', 
+  e2e: {  
+    /*specPattern: 'cypress/integration/examples/*.ts',  */ 
+    specPattern: 'cypress/integration/examples/*.ts',
     baseUrl: 'https://rahulshettyacademy.com/angularpractice/' 
   },
 });

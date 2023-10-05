@@ -4,14 +4,46 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx cypress run",
+    "chromeTestHeaded": "npm run test -- --record --key 42579a52-70e3-4e27-a7fe-aaf6c10c1f3b --headed --browser chrome",
+    "firefoxTestHeaded": "npm run test -- --record --key 42579a52-70e3-4e27-a7fe-aaf6c10c1f3b --headed --browser firefox",
+    "edgeTestHeaded": "npm run test -- --record --key 42579a52-70e3-4e27-a7fe-aaf6c10c1f3b --headed --browser edge",
+    "chromeTestHeadless": "npm run test -- --record --key 42579a52-70e3-4e27-a7fe-aaf6c10c1f3b --headless --browser chrome",
+    "firefoxTestHeadless": "npm run test -- --record --key 42579a52-70e3-4e27-a7fe-aaf6c10c1f3b --headless --browser firefox",
+    "edgeTestHeadless": "npm run test -- --record --key 42579a52-70e3-4e27-a7fe-aaf6c10c1f3b --headless --browser edge",
+    "testAllBrowsersHeadless": "npm run chromeTestHeadless 0&& firefoxTestHeadless && edgeTestHeadless",
+    "testAllBrowsersHeaded": "npm run chromeTestHeaded && firefoxTestHeaded && edgeTestHeaded"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@cypress/webpack-preprocessor": "^6.0.0",
     "@types/mocha": "^10.0.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babelify": "^10.0.0",
+    "browserify": "^17.0.0",
     "cypress": "^13.2.0",
     "cypress-iframe": "^1.0.1",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@babel/core": "^7.23.0",
+    "@badeball/cypress-cucumber-preprocessor": "^18.0.6",
+    "@cypress/browserify-preprocessor": "^3.0.2"
+  }, 
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "@babel/preset-env"
+          ]
+        }
+      ]
+    ]
   }
 }
