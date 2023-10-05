@@ -3,8 +3,8 @@
 /// <reference types="cypress-iframe" />
 import 'cypress-iframe';
 
-describe('test suite #1', () => { 
-    it('test one', () => {
+describe('test suite to add to cart and autocomplete search selection', () => { 
+    it('should add items to cart', () => {
         cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/');
 
         cy.get('.search-keyword').type('ca');
@@ -16,10 +16,9 @@ describe('test suite #1', () => {
                 el.find('button').click();
             } 
         }) 
-    }) 
-
+    })  
     //checkboxes
-    it('test two', () => {
+    it('should check and click on autocomplete item', () => {
         cy.visit('https://rahulshettyacademy.com/AutomationPractice/'); 
         cy.get('input[type="checkbox"]').check(['option2', 'option3']).should('be.checked'); 
 
@@ -29,39 +28,29 @@ describe('test suite #1', () => {
                 el.click();
             }
         })
-    })
-
-    it('test visible or not', () => {
-
-        cy.visit('https://rahulshettyacademy.com/AutomationPractice/'); 
-
+    }) 
+    it('test visible or not', () => { 
+        cy.visit('https://rahulshettyacademy.com/AutomationPractice/');  
         cy.get('#displayed-text').should('be.visible');
         cy.get('#hide-textbox').click();    
-        cy.get('#displayed-text').should('not.be.visible'); 
-
-    })
-
-
-    it('should accept the alert', () => {
-
+        cy.get('#displayed-text').should('not.be.visible');  
+    }) 
+    it('should accept the alert', () => { 
         cy.visit('https://rahulshettyacademy.com/AutomationPractice/'); 
         cy.get('#alertbtn').click(); 
         cy.on('window:alert', (value) => {  
             expect(value).to.be.eq('Hello , share this practice page and share your knowledge'); 
         })
 
-    })
-
-    it('should understand tabs functionality', () => { 
+    }) 
+    it('should removeAttr from DOM element to open in the same tab', () => { 
         cy.visit('https://rahulshettyacademy.com/AutomationPractice/'); 
         cy.get('#opentab').invoke('removeAttr', 'target').click();  
         cy.origin('https://www.qaclickacademy.com/', () => { 
             cy.get('.mt-50 h2').should('contain', 'Welcome to QAClick Academy');
         });  
-    })
-
-
-    it.only('should Web Tables', () => {
+    })  
+    it('should assert two columns from a table', () => {
 
         cy.visit('https://rahulshettyacademy.com/AutomationPractice/'); 
         cy.get('tr td:nth-child(2)').each( (el, index) => {  
@@ -74,8 +63,7 @@ describe('test suite #1', () => {
                 }) 
             } 
         })  
-    })
-
+    }) 
     it.only('should hover and click', () => {
 
         cy.visit('https://rahulshettyacademy.com/AutomationPractice/'); 

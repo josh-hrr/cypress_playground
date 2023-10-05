@@ -1,4 +1,4 @@
-import HomePage from '../examples/PageObject/HomePage';
+import HomePage from './PageObject/HomePage';
 
 
 describe('Form validation', () => {   
@@ -14,7 +14,7 @@ describe('Form validation', () => {
         tc1.getInputEmail().type(this.value.email);
         tc1.getInputPassword().type(this.value.password); 
 
-        this.value.gender.forEach(value => {
+        this.value.gender.forEach((value:any) => {
             tc1.getDropDown().select(value);
         })  
  
