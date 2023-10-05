@@ -4,7 +4,7 @@ describe("API testing", () => {
         cy.visit("https://rahulshettyacademy.com/angularAppdemo/");
    })
 
-   it("should intercept /getBook endpoint", () => {
+   it("should intercept /getBook endpoint response", () => {
 
     cy.intercept({
         method: 'GET',
@@ -29,4 +29,18 @@ describe("API testing", () => {
 
    })
 
+
+   it("should intercept /getBook endpoint request", () => {
+
+    cy.intercept("GET", "https://rahulshettyacademy.com/Library/GetBook.php?AuthorName=shetty", (req) => {
+        req.url = "https://rahulshettyacademy.com/Library/GetBook.php?AuthorName=malotra";
+        req.continue((res) => {
+            expect(res.statusCode).to.equal(404);
+        });
+    }).as("dummyRequestUrl")
+
+    cy.get("button[class='btn btn-primary']").click();
+    cy.wait("@dummyRequestUrl")
+
+   })
 })
