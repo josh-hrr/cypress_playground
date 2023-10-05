@@ -20,6 +20,20 @@
         });
     })
 
+    Cypress.Commands.add("loginAPI", () => {
+        cy.request("POST", "https://rahulshettyacademy.com/api/ecom/auth/login",
+            {
+                "userEmail": "postmanTestName@postmanTestName.com", 
+                "userPassword": "Postman2023+"
+            }).then( (response) => {
+                expect(response.body).to.have.property("token")
+                expect(response.status).to.eq(200)
+                expect(response.body.message).to.eql("Login Successfully");
+
+                Cypress.env("value", response.body.token);
+            })
+    })
+
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
