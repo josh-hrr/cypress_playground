@@ -32,8 +32,9 @@
   "dependencies": {
     "@babel/core": "^7.23.0",
     "@badeball/cypress-cucumber-preprocessor": "^18.0.6",
-    "@cypress/browserify-preprocessor": "^3.0.2"
-  }, 
+    "@cypress/browserify-preprocessor": "^3.0.2",
+    "convert-excel-to-json": "^1.7.0"
+  },
   "browserify": {
     "transform": [
       [
