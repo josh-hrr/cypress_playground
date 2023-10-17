@@ -1,4 +1,4 @@
-describe("Register User Suite", () => {
+describe("Register and Login User Suite", () => {
 
     beforeEach(() => {
         cy.visit("http://automationexercise.com/");
@@ -74,5 +74,14 @@ describe("Register User Suite", () => {
         cy.get(".login-form p").should("contain", "Your email or password is incorrect!");
     })
 
-
+    it("should not register user with existing email", () => {
+        let username = "UAT Test3"
+        let email = "uat@test.com3"; 
+        cy.get("li a[href='/login']").click();
+        cy.get(".signup-form h2").should("contain", "New User Signup!");
+        cy.get("input[data-qa='signup-name']").type(username);
+        cy.get("input[data-qa='signup-email']").type(email);
+        cy.get("button[data-qa='signup-button']").click();
+        cy.get(".signup-form p").should("contain", "Email Address already exist!");   
+    })  
 })
