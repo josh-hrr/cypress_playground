@@ -41,4 +41,21 @@ describe("Register User Suite", () => {
         cy.get(".navbar-nav li a[href='/delete_account']").click();
         cy.get("h2[data-qa='account-deleted']").should("contain", "Account Deleted!");
     })
+
+    it("should login user with correct email and password", () => {
+        let username = "UAT Test3"
+        let email = "uat@test.com3";
+        let password = email.split('').reverse().join('');
+        cy.url().should("contain", "https://automationexercise.com/");
+        cy.get(".navbar-nav").should("be.visible");
+        cy.get(".navbar-nav li a[href='/login']").click();
+        cy.get(".login-form h2").should("contain", "Login to your account");
+        //UAT Test3
+        cy.get("input[data-qa='login-email']").type(email);
+        cy.get("input[data-qa='login-password']").type(password);
+        cy.get("button[data-qa='login-button']").click();
+        cy.get(".navbar-nav").should("contain", `Logged in as ${username}`); 
+        cy.get("li a[href='/logout']").click(); 
+        cy.get("li a[href='/login']").should("contain", "Signup / Login")
+    })
 })
