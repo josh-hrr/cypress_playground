@@ -2,6 +2,7 @@ describe("Register User Suite", () => {
 
     beforeEach(() => {
         cy.visit("http://automationexercise.com/");
+        cy.viewport('iphone-x');
     })
 
     it("should register a new user", () => { 
@@ -72,4 +73,6 @@ describe("Register User Suite", () => {
         cy.get("button[data-qa='login-button']").click();
         cy.get(".login-form p").should("contain", "Your email or password is incorrect!");
     })
+
+
 })
