@@ -83,5 +83,25 @@ describe("Register and Login User Suite", () => {
         cy.get("input[data-qa='signup-email']").type(email);
         cy.get("button[data-qa='signup-button']").click();
         cy.get(".signup-form p").should("contain", "Email Address already exist!");   
-    })  
+    }) 
+    
+    it("should make sure the contact form is working", () => {
+        cy.get(".navbar-nav").should("be.visible");
+        cy.get(".navbar-nav a[href='/contact_us']").click();
+        cy.get(".contact-form .title").should("contain", "Get In Touch");
+        cy.get("input[name='name']").type("nameTest");
+        cy.get("input[name='email']").type("email@test.com");
+        cy.get("input[data-qa='subject']").type("example of a subject");
+        cy.get("textarea[name='message']").type("your message goes here example");
+       
+        cy.get("input[data-qa='submit-button']").click();
+        cy.get(".alert-success").should("contain", "Success!");
+        cy.get(".btn-success").click();
+        cy.get(".col-sm-6").should("contain", "Automation");
+
+        
+
+
+    })
+    
 })
