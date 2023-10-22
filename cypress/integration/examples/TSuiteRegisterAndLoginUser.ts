@@ -97,11 +97,23 @@ describe("Register and Login User Suite", () => {
         cy.get("input[data-qa='submit-button']").click();
         cy.get(".alert-success").should("contain", "Success!");
         cy.get(".btn-success").click();
-        cy.get(".col-sm-6").should("contain", "Automation");
+        cy.get(".col-sm-6").should("contain", "Automation");   
+    }) 
 
-        
-
-
+    it("should make sure the test cases page loads successfully", () => {
+        cy.get("h1").should("contain", "Automation");
+        cy.get("li a[href='/test_cases']").click();
+        cy.get("h2 b").should("contain", "Test Cases");
     })
-    
+
+    it("should verify All Products and product detail page", () => {
+        cy.get("h1").should("contain", "Automation");
+        cy.get("li a[href='/products']").click();
+        cy.get(".features_items .title").should("contain", "All Products");
+        cy.get(".col-sm-4").should("have.length", 35);
+        cy.get(".col-sm-4").find("a[href='/product_details/1']").click();
+        cy.scrollTo(0, 600);
+        cy.get(".product-information h2").should("be.visible");
+        cy.get(".product-information p").should("be.visible");
+    })  
 })
