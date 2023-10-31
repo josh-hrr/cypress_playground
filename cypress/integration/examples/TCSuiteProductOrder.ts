@@ -10,7 +10,16 @@ describe("produt offering suite", () => {
         cy.get("#search_product").type("jeans");
         cy.get("#submit_search").click();
         cy.get(".title").should("contain", "Searched");
-        cy.get(".col-sm-4 p").should("contain", "Jeans");
+        cy.get(".col-sm-4 p").should("contain", "Jeans"); 
+    })
 
+    it("should verify Subscription in home page", () => {
+        cy.get(".col-sm-6").should("contain", "Automation");
+        cy.get("#footer").scrollIntoView();
+        cy.get("#footer").should("contain", "Subscription");
+        cy.get("#susbscribe_email").type("test@gmail.com");
+        cy.get("#subscribe").click();
+        cy.get("#footer").should("contain", "You have been successfully subscribed!");
+        
     })
 })
