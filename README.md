@@ -1,4 +1,4 @@
 # cypress_playground
 
-Repository focus to practice UI Automation with Cypress.
+Repository focus to practice UI Automation with Cypress. t
 
