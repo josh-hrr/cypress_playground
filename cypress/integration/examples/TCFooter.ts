@@ -20,6 +20,10 @@ describe("Footer test suite", () => {
         cy.get("button[type='submit']").click(); 
         cy.get(".alert-success").should("contain", "You have been successfully subscribed!"); 
     })
+
+
+
 })
 
+//testing git and github connection
 //testing git and github connection
