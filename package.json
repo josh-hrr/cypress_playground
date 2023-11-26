@@ -12,7 +12,8 @@
     "firefoxTestHeadless": "npm run test -- --record --key 42579a52-70e3-4e27-a7fe-aaf6c10c1f3b --headless --browser firefox",
     "edgeTestHeadless": "npm run test -- --record --key 42579a52-70e3-4e27-a7fe-aaf6c10c1f3b --headless --browser edge",
     "testAllBrowsersHeadless": "npm run chromeTestHeadless 0&& firefoxTestHeadless && edgeTestHeadless",
-    "testAllBrowsersHeaded": "npm run chromeTestHeaded && firefoxTestHeaded && edgeTestHeaded"
+    "testAllBrowsersHeaded": "npm run chromeTestHeaded && firefoxTestHeaded && edgeTestHeaded",
+    "html-report": "cypress run -- --spec 'cypress/integration/examples/TCFooter.ts' -- -- browser chrome -- -- headed"
   },
   "author": "",
   "license": "ISC",
@@ -27,6 +28,7 @@
     "browserify": "^17.0.0",
     "cypress": "^13.4.0",
     "cypress-iframe": "^1.0.1",
+    "cypress-mochawesome-reporter": "^3.7.0",
     "typescript": "^5.2.2"
   },
   "dependencies": {

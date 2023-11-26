@@ -2,7 +2,8 @@ const { defineConfig } = require("cypress");
 const excelToJson = require('convert-excel-to-json');
 const fs = require('fs');
 
-async function setupNodeEvents(on:any, config:any) {  
+async function setupNodeEvents(on:any, config:any) { 
+  require('cypress-mochawesome-reporter/plugin')(on);
   on('task', { 
     excelToJsonConverter(filePath:any){ 
         const result = excelToJson({
@@ -19,7 +20,7 @@ module.exports = defineConfig({
   e2e stores all properties 
   screenshotfolder, specPatter, test runner window size
 */
-  
+  reporter: 'cypress-mochawesome-reporter',
   chromeWebSecurity: false,
   env: {
     qa: "https://qa.rahulshettyacademy.com",

@@ -24,6 +24,4 @@ describe("Footer test suite", () => {
 
 
 })
-
-//testing git and github connection
-//testing git and github connection
+ 
