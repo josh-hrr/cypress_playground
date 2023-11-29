@@ -21,7 +21,7 @@ module.exports = defineConfig({
   screenshotfolder, specPatter, test runner window size
 */
   reporter: 'cypress-mochawesome-reporter',
-  chromeWebSecurity: false,
+  chromeWebSecurity: false, 
   env: {
     qa: "https://qa.rahulshettyacademy.com",
     dev: "https://dev.rahulshettyacademy.com",
