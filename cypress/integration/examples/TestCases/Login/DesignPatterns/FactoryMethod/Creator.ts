@@ -1,8 +1,8 @@
 import { LoginCommand, SuccessfulLoginCommand, UnsuccessfulLoginCommand } from "./Product";
  
 abstract class LoginCreator {
-    public abstract createLoginCommand(): LoginCommand;
-
+    protected abstract createLoginCommand(): LoginCommand;
+ 
     public performLogin(username: string, password: string) {
         const loginCommand = this.createLoginCommand();
         loginCommand.execute(username, password);
