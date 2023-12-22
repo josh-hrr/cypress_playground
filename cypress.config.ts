@@ -31,7 +31,7 @@ module.exports = defineConfig({
   e2e: {  
     /*specPattern: 'cypress/integration/examples/*.ts',  */ 
     setupNodeEvents,
-    specPattern: 'cypress/integration/examples/*.ts',
+    specPattern: '**/*.ts',
     baseUrl: 'https://www.saucedemo.com/' 
   }, 
 });
